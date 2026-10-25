@@ -1,0 +1,6 @@
+# 锁 edge-tts==7.3.1：7.2.8 / 6.1.12 会被微软 GEC 签名校验拒绝（403）
+edge-tts==7.3.1
+av
+Pillow
+numpy
+pypdf

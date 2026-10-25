@@ -1,0 +1,4 @@
+interface:
+  display_name: "文档白板视频工坊"
+  short_description: "把文档端到端做成带语音配音、BGM 与硬字幕的白板动画成品视频"
+  default_prompt: "使用 $doc-to-whiteboard-video 把这份文档做成白板动画成品视频。"

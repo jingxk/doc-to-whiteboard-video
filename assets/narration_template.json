@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "title": "项目名",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+30%",
+    "target_duration_sec": 394,
+    "target_chars": 2285,
+    "note": "字数 = 时长 × 5.8（晓晓 +30% 语速）。宁多勿少。scene 字段仅用于追溯画面，不影响音频合成。"
+  },
+  "segments": [
+    {"id": 1, "scene": 1, "text": "开场段：点明主题与重要性，口语化，避免书面语。"},
+    {"id": 2, "scene": 1, "text": "第二段：承接开场，展开第一个论点。"},
+    {"id": 3, "scene": 2, "text": "第三段：继续推进，关键数据用中文数字写法（百分之四）。"}
+  ]
+}

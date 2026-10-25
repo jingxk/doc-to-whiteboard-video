@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 本地产物（成片体积大，不入库）
+*.mp4
+*.wav
+!assets/bgm/steady-market-pulse.wav
+audio/
+
+# OS
+Thumbs.db
+.DS_Store

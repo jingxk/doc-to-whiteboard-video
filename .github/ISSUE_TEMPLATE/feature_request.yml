@@ -1,0 +1,30 @@
+name: 功能建议
+description: 建议新能力、新参数或工作流改进
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决什么问题
+      description: 当前的痛点或场景
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议的方案
+      description: 期望的行为、新增参数、新增脚本等
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 涉及环节（可多选）
+      options:
+        - 文档解析
+        - 画面编排
+        - 旁白/TTS
+        - BGM 混音
+        - 字幕
+        - 质检
+        - 文档/规范
