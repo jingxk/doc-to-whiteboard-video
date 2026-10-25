@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: 脚本语法检查
+        run: python -m compileall -q scripts
+
+      - name: JSON 模板合法性
+        run: |
+          python - <<'EOF'
+          import json, glob, sys
+          for f in sorted(glob.glob("assets/*.json")):
+              json.load(open(f, encoding="utf-8"))
+              print("OK", f)
+          EOF
+
+      - name: BGM 署名文件存在
+        run: test -f assets/bgm/ATTRIBUTION.md
