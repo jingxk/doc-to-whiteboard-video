@@ -142,7 +142,7 @@ doc-to-whiteboard-video/
 
 ## 上游致意
 
-本仓库fork自 [geeklee/srt-whiteboard-animation](https://github.com/geeklee/srt-whiteboard-animation)（MIT，作者：江哥是老登啊），画面生成阶段完全依赖上游技能，请一并前往上游仓库 Star。
+本仓库fork自 [geeklee/srt-whiteboard-animation](https://github.com/geeklee/srt-whiteboard-animation)（MIT），画面生成阶段完全依赖上游技能，请一并前往上游仓库 Star。
 
 ## 贡献
 
