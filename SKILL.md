@@ -45,7 +45,7 @@ pip install -r requirements.txt
 依赖清单：`edge-tts==7.3.1`、`av`(PyAV)、`Pillow`、`numpy`、`pypdf`、
 `opencv-python`（内嵌画面渲染器需要）、`python-docx`（解析 .docx 需要）。
 系统还需 PATH 中可用的 **ffmpeg** 与 **ffprobe**（macOS: `brew install ffmpeg`；
-Ubuntu: `apt install ffmpeg`）。
+Ubuntu: `sudo apt-get update && sudo apt-get install -y ffmpeg`）。
 
 > 不要把技能仓库自带的 `.git` 内 `.venv` 当作运行环境（动态库常损坏，
 > 报 `libpython3.13.dylib not loaded`）。始终用自己新建的 `.venv` 或系统 Python。

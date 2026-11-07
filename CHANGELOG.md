@@ -3,6 +3,14 @@
 本仓库遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) 格式，
 版本语义遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.1] - 2026-11-07
+
+### 修复（CI 与安装文档）
+
+- GitHub Actions 在环境预检前安装 `ffmpeg`，补齐 Ubuntu runner 缺失的 `ffmpeg` / `ffprobe`
+- README.md / SKILL.md 明确 `ffprobe` 随 `ffmpeg` 一起安装，并给出可直接执行的 Ubuntu 命令
+- 不改变视频生成流程，不引入任何上游技能依赖，仍是单一仓库自包含安装包
+
 ## [1.2.0] - 2026-11-07
 
 ### 重大变更：自包含安装包

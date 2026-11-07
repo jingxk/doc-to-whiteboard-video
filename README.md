@@ -45,7 +45,8 @@ git clone https://github.com/jingxk/doc-to-whiteboard-video.git \
 cd ~/.codex/skills/doc-to-whiteboard-video
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
-# 另需系统 PATH 中可用的 ffmpeg
+# 另需系统 PATH 中可用的 ffmpeg / ffprobe
+# Ubuntu: sudo apt-get update && sudo apt-get install -y ffmpeg
 ```
 
 ### 3. 环境预检（推荐）
