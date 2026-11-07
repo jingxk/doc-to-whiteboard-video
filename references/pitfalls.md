@@ -63,6 +63,17 @@
 | 切换生硬 | 相邻字幕间隔 0 帧 | 每条尾部留 100ms 间隔（≥2 帧@60fps） |
 | 白板底被误判为「白色文字」 | 暖米黄 #F5EBD7 三通道都 >200 | 检测阈值用 >240，并同时检测「深色底框 <180」 |
 
+## 6.5 环境与安装
+
+| 症状 | 根因 | 正解 |
+|---|---|---|
+| `ModuleNotFoundError: No module named 'docx'` | requirements.txt 早期漏了 python-docx | `pip install python-docx`（现已补入 requirements.txt） |
+| `ModuleNotFoundError: No module named 'cv2'` | requirements.txt 早期漏了 opencv-python（上游渲染器需要） | `pip install opencv-python`（现已补入 requirements.txt） |
+| `FileNotFoundError` / 字幕乱码 | 字体路径硬编码 macOS，Linux/Windows 没有 | 跨平台字体自动探测（已修复），或用 `--font` 显式指定 |
+| `objc` 警告 libavdevice 冲突 | av 和 opencv-python 自带不同版本 ffmpeg 动态库 | 通常可忽略；若崩溃，优先排查 cv2 与 av 版本组合 |
+| 笔杆出现第三方品牌字 | 早期版本直接用了上游 `drawing-hand.png`（笔杆印有第三方品牌字） | 现本仓库 `assets/drawing-hand.png` 已为无字版，渲染器内嵌优先使用；若仍出现，用 `assets/drawing-hand.png` 覆盖即可 |
+| 不知道装好了没有 | 没有预检脚本 | 跑 `python scripts/check_env.py`（现已提供） |
+
 ## 7. 封装
 
 | 症状 | 根因 | 正解 |

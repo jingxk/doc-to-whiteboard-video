@@ -13,7 +13,7 @@
                            --timeline audio/timeline.json --out 带字幕.mp4
                            [--font-size 34] [--max-chars 26] [--bitrate 8000000]
 
-字幕规范（经 caption-access-desk 质检验证，等级 A）:
+字幕规范（按 references/qa-gates.md 硬性门禁整理）:
 - 每条 6–26 字，渲染 1 行（绝不整段堆砌，本次曾出现 83 字堆 6 行占屏 38%）
 - 停留 0.83–7s（短句按字数占比分配显示时长，过短会闪烁）
 - 相邻字幕留 ≥100ms 间隔（≥2 帧@60fps），避免切换生硬
@@ -33,7 +33,29 @@ from pathlib import Path
 import av
 from PIL import Image, ImageDraw, ImageFont
 
-FONT_PATH = "/System/Library/Fonts/STHeiti Medium.ttc"
+# 跨平台字体探测：按优先级列表查找第一个可用的中文字体
+_FONT_CANDIDATES = [
+    # macOS
+    "/System/Library/Fonts/STHeiti Medium.ttc",
+    "/System/Library/Fonts/PingFang.ttc",
+    "/System/Library/Fonts/Hiragino Sans GB.ttc",
+    # Linux（常见中文黑体）
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/noto-cjk/NotoSansCJK-Regular.ttc",
+    # Windows
+    "C:/Windows/Fonts/msyh.ttc",
+    "C:/Windows/Fonts/simhei.ttf",
+]
+
+def _find_font():
+    from pathlib import Path
+    for f in _FONT_CANDIDATES:
+        if Path(f).exists():
+            return f
+    return None
+
+FONT_PATH = _find_font()  # 可能为 None；main() 里兜底并给出清晰报错
 DEFAULT_MIN_CHARS = 6
 
 
@@ -101,8 +123,19 @@ def main():
     ap.add_argument("--max-chars", type=int, default=26)
     ap.add_argument("--min-chars", type=int, default=DEFAULT_MIN_CHARS)
     ap.add_argument("--bitrate", type=int, default=8000000)
-    ap.add_argument("--font", default=FONT_PATH)
+    ap.add_argument("--font", default=None,
+                    help="中文字体文件路径；缺省自动探测系统字体")
     args = ap.parse_args()
+
+    if args.font is None:
+        args.font = FONT_PATH
+    if args.font is None:
+        print("[err] 未找到可用中文字体。请用 --font /path/to/font.ttf 指定，"
+              "或安装 Noto Sans CJK / 微软雅黑 / 黑体等任一中文字体。", file=sys.stderr)
+        sys.exit(2)
+    if not Path(args.font).exists():
+        print(f"[err] 字体文件不存在: {args.font}", file=sys.stderr)
+        sys.exit(2)
 
     narration = json.loads(Path(args.narration).expanduser().read_text(encoding="utf-8"))["segments"]
     timeline = json.loads(Path(args.timeline).expanduser().read_text(encoding="utf-8"))["segments"]

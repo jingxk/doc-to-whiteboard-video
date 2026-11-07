@@ -1,7 +1,10 @@
 MIT License
 
-Copyright (c) 2026 jingxk — 上游 srt-whiteboard-animation
-Copyright (c) 2026 jingxk — doc-to-whiteboard-video 衍生部分
+Copyright (c) 2026 江哥是老登啊 — 上游组件 srt-whiteboard-animation
+Copyright (c) 2026 jingxk — doc-to-whiteboard-video 新增及衍生部分
+
+本仓库包含来自 geeklee/srt-whiteboard-animation 的 vendored 组件（MIT），
+其完整许可证与改动记录见 THIRD_PARTY_LICENSES.md。
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

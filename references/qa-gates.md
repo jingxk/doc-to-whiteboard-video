@@ -1,18 +1,14 @@
 # 质检门禁
 
-交付前必须过检。字幕部分使用 `caption-access-desk` 技能（需另行安装），
-音视频部分使用本仓库 `scripts/verify_output.py`。
+交付前必须过检。字幕部分按本仓库内置的硬性门禁人工核对，
+音视频部分使用本仓库 `scripts/verify_output.py`，无需额外安装质检技能。
 
-## 一、字幕质检（caption-access-desk）
+## 一、字幕质检（内置硬性门禁）
 
 ### 准备输入
 
-把断句后的字幕时间轴转成 `caption_qa_input.json`（格式见该技能的 `input_template.json`）：
-
-```bash
-python <caption-access-desk 技能目录>/caption_engine.py lint \
-  --input audio/caption_qa_input.json
-```
+用 `scripts/burn_subtitles.py` 输出的字幕效果，结合 `audio/narration.json`
+与 `audio/timeline.json` 逐条核对；无需转换成第三方质检工具的输入格式。
 
 ### 硬性门禁
 
@@ -25,8 +21,8 @@ python <caption-access-desk 技能目录>/caption_engine.py lint \
 
 ### 达标基线
 
-- **等级 A（≥90 分）、致命 0 项** 才可交付
-- 常见不适用告警（单人旁白本地 MP4）：播放器键盘可达性测试、多说话人标识
+- 上表硬性门禁全部通过才可交付
+- 单人旁白本地 MP4 不适用：播放器键盘可达性测试、多说话人标识
 
 ### 修复顺序
 

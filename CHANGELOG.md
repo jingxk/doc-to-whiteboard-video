@@ -3,6 +3,33 @@
 本仓库遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) 格式，
 版本语义遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.0] - 2026-11-07
+
+### 重大变更：自包含安装包
+
+- **内嵌白板渲染器，移除对上游技能 `srt-whiteboard-animation` 的依赖**：画面渲染所需的 `render_stream_whiteboard.py` / `stream_render.py` / `merge_scenes.py` 已 vendoring 进 `scripts/render/`，用户只需安装本技能一个仓库即可跑完整流程
+- **笔尖素材内置无字版** `assets/drawing-hand.png`（已抹除原始笔杆品牌字）
+- 新增 `THIRD_PARTY_LICENSES.md`：保留上游 MIT 许可证全文与改动记录（符合 MIT 署名要求）
+- `check_env.py` 改为检查内嵌 `scripts/render/`，不再要求安装上游技能
+- SKILL.md / README.md / pitfalls.md 全面更新，明确「单一仓库、单条 clone 即可用」
+- 统一安装路径与环境预检输出；质检门禁改为仓库内置规范，不要求额外安装任何技能
+- Release 归档采用规范顶层目录，并排除本地缓存与中间产物
+
+## [1.1.0] - 2026-11-07
+
+### 修复（安装与首次使用体验）
+
+- **requirements.txt 补齐 `opencv-python`**：上游渲染器需要，此前缺失导致阶段2报 `ModuleNotFoundError: No module named 'cv2'`
+- **requirements.txt 补齐 `python-docx`**：`extract_doc.py` 解析 .docx 需要，此前缺失导致阶段1报 `ModuleNotFoundError: No module named 'docx'`
+- **`burn_subtitles.py` 字体跨平台**：不再硬编码 macOS 字体路径，自动探测 macOS / Linux / Windows 中文字体，均找不到时用 `--font` 指定
+- **新增 `scripts/check_env.py`**：一键环境预检，逐项报告 Python 依赖 / ffmpeg / 渲染组件是否就绪，可用于 CI
+
+### 文档
+
+- SKILL.md / README.md 重写当时的双仓库安装流程
+- `references/pitfalls.md` 新增「6.5 环境与安装」小节，汇总安装期踩坑
+- 标注上游 `drawing-hand.png` 笔杆含品牌字，并内置无字替代素材
+
 ## [1.0.0] - 2026-10-25
 
 首个公开版本。由一次真实交付（人口结构拐点下的跨周期资产配置与风险控制战略建议书，394s 成片）完整复盘沉淀而成。

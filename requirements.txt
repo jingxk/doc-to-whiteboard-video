@@ -4,3 +4,7 @@ av
 Pillow
 numpy
 pypdf
+# 阶段2 内嵌白板渲染器需要
+opencv-python
+# 阶段1 解析 .docx 需要
+python-docx

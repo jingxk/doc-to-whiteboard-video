@@ -16,7 +16,7 @@ jobs:
           python-version: "3.10"
 
       - name: 脚本语法检查
-        run: python -m compileall -q scripts
+        run: python -m compileall -q scripts scripts/render
 
       - name: JSON 模板合法性
         run: |
@@ -29,3 +29,8 @@ jobs:
 
       - name: BGM 署名文件存在
         run: test -f assets/bgm/ATTRIBUTION.md
+
+      - name: 环境预检（依赖完整性）
+        run: |
+          pip install -r requirements.txt
+          python scripts/check_env.py
